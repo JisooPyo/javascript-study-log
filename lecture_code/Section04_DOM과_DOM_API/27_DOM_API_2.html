@@ -1,0 +1,120 @@
+<!-- =========================================================
+     DOM API - 2
+     =========================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Tree</title>
+  </head>
+
+  <body>
+    <div class="animal-info">
+      <div class="info-item" id="name">강아지</div>
+      <div class="info-item" id="color">갈색</div>
+      <div class="info-item" id="age">2살</div>
+    </div>
+
+    <script>
+      /* =====================================================
+         DOM 요소 생성 (createElement / createTextNode)
+         ===================================================== */
+
+      /**
+       * createElement
+       * - 새로운 DOM 요소를 생성
+       * - 아직 DOM 트리에 추가되지는 않은 상태
+       */
+      let $type = document.createElement("div");
+      $type.className = "info-item";
+      $type.id = "type";
+
+      /**
+       * createTextNode
+       * - 텍스트만을 담는 노드 생성
+       * - 요소 노드에 appendChild로 추가해야 화면에 보인다.
+       */
+      let $typeText = document.createTextNode("푸들");
+
+      // 현재 상태:
+      // - $type, $typeText는 생성만 되었을 뿐
+      // - 아직 화면(DOM 트리)에는 존재하지 않는다.
+
+      /* =====================================================
+         DOM 트리에 요소 추가 (appendChild)
+         ===================================================== */
+
+      /**
+       * appendChild
+       * - 부모 요소의 "마지막 자식"으로 노드를 추가
+       * - 이미 DOM에 존재하는 노드를 append하면 이동된다.
+       */
+      let $animalInfo = document.querySelector("div.animal-info");
+
+      // type 요소를 animal-info의 자식으로 추가
+      $animalInfo.appendChild($type);
+
+      // 텍스트 노드를 type 요소의 자식으로 추가
+      $type.appendChild($typeText);
+
+      console.log($type); // <div class="info-item" id="type">푸들</div>
+      console.log($typeText); // Text 노드
+
+      /* =====================================================
+         버튼 요소 생성 및 추가
+         ===================================================== */
+
+      let $button = document.createElement("button");
+      $button.id = "new-button";
+      $button.classList.add("new-button");
+      $button.textContent = "버튼";
+
+      // 버튼을 animal-info의 마지막 자식으로 추가
+      $animalInfo.appendChild($button);
+
+      // 현재 animal-info의 HTML 구조를 문자열로 출력
+      console.log($animalInfo.outerHTML);
+
+      /* =====================================================
+         이벤트 등록 (addEventListener)
+         ===================================================== */
+
+      /**
+       * addEventListener
+       * - 특정 이벤트(click, input 등)가 발생했을 때 실행할 함수를 등록
+       */
+      $button.addEventListener("click", () => {
+        window.alert("클릭");
+      });
+
+      /* =====================================================
+         innerHTML
+         ===================================================== */
+
+      /**
+       * innerHTML
+       * - 요소 내부의 HTML을 문자열 형태로 반환
+       * - 문자열을 대입하면 내부 DOM을 통째로 교체
+       */
+      console.log($animalInfo.innerHTML);
+
+      // animal-info 내부를 완전히 새로운 HTML로 교체
+      $animalInfo.innerHTML = '<div id="name">고양이</div>';
+
+      console.log($animalInfo.innerHTML);
+
+      /**
+       * ⚠️ innerHTML 사용 시 주의점
+       *
+       * - 기존 DOM 요소와 이벤트 리스너가 모두 제거된다.
+       * - 문자열 기반 조작이므로 실수하기 쉽다.
+       * - 보안(XSS) 문제의 원인이 될 수 있다.
+       *
+       * → 단순 출력이나 테스트용으로는 사용 가능하지만 실제 DOM 조작은 createElement + appendChild 방식이 더 안전하다.
+       */
+    </script>
+  </body>
+</html>

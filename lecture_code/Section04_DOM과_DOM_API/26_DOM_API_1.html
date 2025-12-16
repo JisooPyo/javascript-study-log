@@ -1,0 +1,163 @@
+<!-- =========================================================
+     DOM API - 1
+     =========================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Tree</title>
+  </head>
+
+  <body>
+    <!-- -----------------------------------------------------
+         HTML 구조
+         -----------------------------------------------------
+         하나의 부모 요소(.animal-info) 아래에 여러 div 요소들이 자식으로 구성되어 있다.
+         이 구조는 DOM 트리 형태로 브라우저에 의해 관리된다.
+    -->
+    <div class="animal-info">
+      <div id="name">강아지</div>
+      <div id="color">갈색</div>
+      <div id="age">2살</div>
+
+      <div class="info-item">고양이</div>
+      <div class="info-item">흰색</div>
+      <div class="info-item">3살</div>
+      <div class="info-item" id="other-color">노란색</div>
+    </div>
+
+    <script>
+      /* =====================================================
+         DOM 요소 선택 (Element Selection)
+         ===================================================== */
+
+      /**
+       * getElementById
+       * - id 속성으로 단 하나의 요소를 선택
+       * - 반환값: Element
+       *
+       * 관례적으로 DOM 요소를 변수에 담을 때 $ 접두사를 붙이거나 element라는 이름을 사용한다.
+       */
+      let $color = document.getElementById("color");
+      console.log($color); // <div id="color">갈색</div>
+
+      /**
+       * querySelector
+       * - CSS 선택자를 사용하여 요소를 선택
+       * - 조건에 맞는 "첫 번째 요소"만 반환
+       */
+      let $animalInfo = document.querySelector("div.animal-info");
+      let ageElement = document.querySelector("div#age");
+
+      console.log($animalInfo);
+      console.log(ageElement);
+
+      /**
+       * querySelectorAll
+       * - CSS 선택자에 해당하는 "모든 요소" 선택
+       * - 반환값: NodeList (유사 배열)
+       */
+      let $infoItem = document.querySelectorAll("div.info-item");
+      console.log($infoItem); // NodeList
+
+      /**
+       * getElementsByClassName
+       * - 클래스 이름으로 요소 선택
+       * - 반환값: HTMLCollection (실시간 컬렉션)
+       */
+      let $infoItem2 = document.getElementsByClassName("info-item");
+      console.log($infoItem2); // HTMLCollection
+
+      /**
+       * getElementsByTagName
+       * - 태그 이름으로 요소 선택
+       * - 반환값: HTMLCollection
+       */
+      let $div = document.getElementsByTagName("div");
+      console.log($div); // HTMLCollection
+
+      /* =====================================================
+         속성(Attribute) 변경
+         ===================================================== */
+
+      /**
+       * className
+       * - 요소의 class 속성을 문자열로 다룬다.
+       * - 기존 클래스가 모두 덮어씌워진다.
+       */
+      let $name = document.getElementById("name");
+      $name.className = "dog-name";
+
+      console.log($name); // <div class="dog-name" id="name">강아지</div>
+      console.log($name.className); // dog-name
+
+      /**
+       * id 속성 변경
+       */
+      let $animalInfo2 = document.querySelector("div.animal-info");
+      $animalInfo2.id = "animal";
+
+      console.log($animalInfo2);
+      console.log($animalInfo2.id); // animal
+
+      /* =====================================================
+         classList API
+         ===================================================== */
+
+      /**
+       * classList
+       * - DOMTokenList 형태로 클래스 목록을 관리
+       * - add, remove, toggle 등의 메서드 제공
+       */
+      let $color2 = document.getElementById("other-color");
+      console.log($color2.classList); // DOMTokenList
+
+      // 클래스 추가
+      $color2.classList.add("color-type");
+      console.log($color2.outerHTML); // <div class="info-item color-type" id="other-color">노란색</div>
+
+      // 클래스 제거
+      $color2.classList.remove("info-item");
+      console.log($color2.outerHTML); // <div class="color-type" id="other-color">노란색</div>
+
+      /**
+       * console.log로 DOM 요소를 출력할 때의 주의점
+       *
+       * - console.log($color2)는 "현재 상태의 스냅샷"이 아니라 "DOM 객체에 대한 참조"를 출력한다.
+       * - 따라서 같은 요소를 여러 번 출력하면 최종 변경된 상태만 보일 수 있다.
+       *
+       * - outerHTML은 문자열이므로 해당 시점의 상태를 스냅샷처럼 확인할 수 있다.
+       */
+
+      /* =====================================================
+         텍스트 내용 변경
+         ===================================================== */
+
+      /**
+       * textContent
+       * - 요소 내부의 텍스트를 변경
+       * - HTML 태그는 해석하지 않고 그대로 텍스트로 처리
+       */
+      let $age = document.getElementById("age");
+      $age.textContent = "5살";
+
+      console.log($age); // <div id="age">5살</div>
+
+      /* =====================================================
+         스타일(style) 조작
+         ===================================================== */
+
+      /**
+       * style
+       * - 인라인 스타일을 직접 변경
+       * - CSS 속성은 camelCase로 작성
+       */
+      let $color3 = document.getElementById("color");
+      $color3.style.color = "blue";
+      $color3.style.fontSize = "30px";
+    </script>
+  </body>
+</html>
