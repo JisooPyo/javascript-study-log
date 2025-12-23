@@ -115,6 +115,7 @@ export default function App($app) {
       });
     },
   });
+
   const cityDetail = new CityDetail();
 
   this.setState = (newState) => {
