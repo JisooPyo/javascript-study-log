@@ -1,0 +1,141 @@
+body {
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.pokemon-items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  background-color: #f4f4f4;
+}
+
+.pokemon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  background-color: #f4f4f4;
+}
+
+.pokemon-img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 0px;
+}
+
+.pokemon-img img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 5px;
+}
+
+.pokemon-info {
+  /* text-align: center; */
+  width: 100%;
+  padding: 0 0 10px 8px;
+  background-color: #f4f4f4;
+}
+
+.pokemon-no {
+  font-size: 0.8em;
+  color: #888;
+  margin-bottom: 2px;
+  background-color: #f4f4f4;
+}
+
+.pokemon-name {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.pokemon-types {
+  padding: 3px 0 3px 0;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: #f4f4f4;
+}
+
+.type-badge {
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 6px 10px;
+  font-weight: 700;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.type-grass {
+  background: #42bf24;
+}
+.type-poison {
+  background: #994dcf;
+}
+.type-fire {
+  background: #ff612c;
+}
+.type-flying {
+  background: #95c9ff;
+}
+.type-water {
+  background: #2992ff;
+}
+.type-bug {
+  background: #9fa424;
+}
+.type-normal {
+  background: #999999;
+}
+.type-electric {
+  background: #ffdb00;
+}
+.type-ground {
+  background: #ab7939;
+}
+.type-fairy {
+  background: #ffb1ff;
+}
+.type-fighting {
+  background: #ffa202;
+}
+.type-psychic {
+  background: #ff637f;
+}
+.type-rock {
+  background: #bcb889;
+}
+.type-steel {
+  background: #6aaed3;
+}
+.type-ice {
+  background: #42d8ff;
+}
+.type-ghost {
+  background: #6e4570;
+}
+.type-dragon {
+  background: #5462d6;
+}
